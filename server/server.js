@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./db/connectDB.js";
 import eventRoutes from "./routes/v1/eventRoutes.js";
 import ticketRoutes from "./routes/v1/ticketRoutes.js";
+import memoryRoutes from "./routes/v1/memoryRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 5002;
 app.use(express.json()); //allows us to accept JSON data in body(what user passes)
 app.use("/api/v1", eventRoutes);
 app.use("/api/v1", ticketRoutes);
+app.use("/api/v1", memoryRoutes);
 
 app.listen(PORT, () => {
   connectDB();
