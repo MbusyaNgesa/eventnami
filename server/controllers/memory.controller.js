@@ -82,9 +82,9 @@ export const deleteMemory = async (req, res) => {
   try {
     const memory = await Memory.findByIdAndDelete(id);
     if (!memory) {
-      res.status(404).json({ message: "Memory not found" });
+      return res.status(404).json({ message: "Memory not found" });
     }
-    res
+    return res
       .status(201)
       .json({ success: true, message: "Memory successfully deleted" });
   } catch (error) {

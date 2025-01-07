@@ -7,6 +7,11 @@ const eventSchema = new mongoose.Schema(
     image: { type: String },
     totalTickets: { type: Number },
     availableTickets: { type: Number },
+    genre: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Genre",
+      required: true,
+    },
   },
   { timestamps: true }
 );
