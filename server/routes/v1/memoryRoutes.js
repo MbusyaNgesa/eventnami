@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createMemory,
+  deleteMemory,
   getAllMemories,
   getOneMemory,
   updateMemory,
@@ -12,5 +13,6 @@ router.post("/memories", createMemory);
 router.get("/memories", getAllMemories);
 router.get("/memories/:id", getOneMemory);
 router.put("/memories/:id", updateMemory);
+router.delete("/memories/:id", deleteMemory);
 
 export default router;

@@ -75,3 +75,19 @@ export const updateMemory = async (req, res) => {
     res.status(500).json({ message: "Error updating memory" });
   }
 };
+
+export const deleteMemory = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const memory = await Memory.findByIdAndDelete(id);
+    if (!memory) {
+      res.status(404).json({ message: "Memory not found" });
+    }
+    res
+      .status(201)
+      .json({ success: true, message: "Memory successfully deleted" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Error deleting memory" });
+  }
+};
