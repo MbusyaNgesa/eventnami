@@ -3,7 +3,7 @@ import { Event } from "../models/eventModel.js";
 
 export const createEvent = async (req, res) => {
   const event = req.body;
-  if (!event.name || !event.price) {
+  if (!event.name || !event.price || !event.genre) {
     return res
       .status(400)
       .json({ success: false, message: "Please provide all fields" });
@@ -71,5 +71,25 @@ export const deleteEvent = async (req, res) => {
       .json({ success: true, message: "Event deleted successfully" });
   } catch (error) {
     res.status(404).json({ success: false, message: "Event not found" });
+  }
+};
+
+export const getEventsByGenre = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const event = await Event.find({ genre: id });
+
+    if (!event) {
+      return res.status(404).json({ message: "Event genre not found" });
+    }
+    return res
+      .status(200)
+      .json({ message: "Event by genre retrieved", data: event });
+  } catch (error) {
+    console.error(error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "Error retrieving genres" });
   }
 };
