@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 import { Memory } from "../models/memoryModel.js";
 import { Event } from "../models/eventModel.js";
 
@@ -57,5 +59,19 @@ export const updateMemory = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id))
     //if id is not valid
-    return res.status(404).send("Invalid event ID");
+    return res.status(404).send("Invalid memory ID");
+
+  try {
+    const memoryUpdate = await Memory.findByIdAndUpdate(id, memory, {
+      new: true,
+    });
+    res.status(201).json({
+      success: true,
+      message: "Memory updated successfully",
+      data: memoryUpdate,
+    });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: "Error updating memory" });
+  }
 };
