@@ -11,7 +11,7 @@ export default function Home() {
         <section>
           <Hero />
         </section>
-        <section className="mb-12">
+        <section id="events" className="mb-12 mt-12">
           <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
           <UpcomingEvents events={mockEvents} isLoading={false} />
         </section>

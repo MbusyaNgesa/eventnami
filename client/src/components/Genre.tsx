@@ -10,19 +10,26 @@ interface GenreProps {
 
 export default function Genre({ genres }: GenreProps) {
   const carouselRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const carousel = carouselRef.current;
-    if (!carousel) return;
+    const content = contentRef.current;
+    if (!carousel || !content) return;
+
+    // Clone items for infinite scroll
+    const items = Array.from(content.children);
+    items.forEach((item) => {
+      const clone = item.cloneNode(true) as HTMLElement;
+      content.appendChild(clone);
+    });
 
     let scrollInterval: NodeJS.Timeout;
+    let resetTimeout: NodeJS.Timeout | null = null;
 
     const startScroll = () => {
       scrollInterval = setInterval(() => {
-        if (
-          carousel.scrollLeft + carousel.clientWidth >=
-          carousel.scrollWidth
-        ) {
+        if (carousel.scrollLeft >= content.scrollWidth / 2) {
           carousel.scrollLeft = 0;
         } else {
           carousel.scrollLeft += 1;
@@ -41,6 +48,9 @@ export default function Genre({ genres }: GenreProps) {
 
     return () => {
       stopScroll();
+      if (resetTimeout) {
+        clearTimeout(resetTimeout); // Check if resetTimeout is not null
+      }
       carousel.removeEventListener("mouseenter", stopScroll);
       carousel.removeEventListener("mouseleave", startScroll);
     };
@@ -48,26 +58,28 @@ export default function Genre({ genres }: GenreProps) {
 
   return (
     <div ref={carouselRef} className="flex overflow-x-hidden">
-      {genres.map((genre) => (
-        <Link
-          key={genre.id}
-          href={`/genre/${genre.id}`}
-          className="flex-shrink-0 mr-4"
-        >
-          <div
-            className="w-64 h-40 rounded-lg flex items-center justify-center text-white font-bold text-xl"
-            style={{
-              backgroundImage: `url(${genre.image})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
+      <div ref={contentRef} className="flex">
+        {genres.map((genre) => (
+          <Link
+            key={genre.id}
+            href={`/genre?selected=${genre.name.toLowerCase()}`}
+            className="flex-shrink-0 mr-4"
           >
-            <span className="bg-black bg-opacity-50 px-4 py-2 rounded">
-              {genre.name}
-            </span>
-          </div>
-        </Link>
-      ))}
+            <div
+              className="w-64 h-40 rounded-lg flex items-center justify-center text-white font-bold text-xl"
+              style={{
+                backgroundImage: `url(${genre.image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <span className="bg-black bg-opacity-50 px-4 py-2 rounded">
+                {genre.name}
+              </span>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }

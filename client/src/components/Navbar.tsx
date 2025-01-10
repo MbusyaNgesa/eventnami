@@ -25,6 +25,7 @@ import {
 
 import pfp1 from "../img/pfp1.jpeg";
 import pfp2 from "../img/pfp2.jpeg";
+import { usePathname, useRouter } from "next/navigation";
 
 interface NavItem {
   title: string;
@@ -32,13 +33,33 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { title: "Events", href: "/event" },
+  { title: "Events", href: "/#events" },
   { title: "Memory", href: "/memories" },
-  { title: "Genres", href: "/genres" },
+  { title: "Genres", href: "/genre" },
 ];
 
 export function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = React.useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavigation = (href: string) => {
+    if (href.startsWith("/#")) {
+      const sectionId = href.replace("/#", "");
+      // Handle scroll to section if on homepage
+      if (pathname === "/") {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to homepage and then scroll
+        router.push(href);
+      }
+    } else {
+      router.push(href);
+    }
+  };
 
   return (
     <nav className="border-b bg-cyan-800 ">
@@ -69,7 +90,7 @@ export function Navbar() {
         </div>
 
         {/* Navigation Menu - hidden on mobile */}
-        <NavigationMenu className="hidden md:flex ">
+        {/* <NavigationMenu className="hidden md:flex ">
           <NavigationMenuList className="bg-cyan-800 text-white">
             {navItems.map((item) => (
               <NavigationMenuItem key={item.title}>
@@ -80,6 +101,20 @@ export function Navbar() {
                     {item.title}
                   </NavigationMenuLink>
                 </Link>
+              </NavigationMenuItem>
+            ))}
+          </NavigationMenuList>
+        </NavigationMenu> */}
+        <NavigationMenu className="hidden md:flex">
+          <NavigationMenuList className="bg-cyan-800 text-white">
+            {navItems.map((item) => (
+              <NavigationMenuItem key={item.title}>
+                <button
+                  onClick={() => handleNavigation(item.href)}
+                  className={`${navigationMenuTriggerStyle()} !bg-cyan-800 !text-white hover:!bg-cyan-700 hover:!text-white data-[active]:!bg-cyan-700 data-[state=open]:!bg-cyan-700`}
+                >
+                  {item.title}
+                </button>
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
