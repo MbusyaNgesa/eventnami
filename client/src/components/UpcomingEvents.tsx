@@ -56,24 +56,26 @@ export default function UpcomingEvents({
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {displayEvents.map((event) => (
-          <Card key={event.id} className="w-full">
-            <Image
-              src={event.image}
-              alt={event.name}
-              width={300}
-              height={200}
-              className="w-full h-48 object-cover"
-            />
-            <CardContent className="mt-4">
-              <h3 className="text-lg font-semibold">{event.name}</h3>
-              <p className="text-sm text-gray-500">{event.date}</p>
-              <p className="text-sm font-bold">KES {event.price}</p>
-              <div className="flex items-center mt-2">
-                <MapPin size={16} className="mr-1" />
-                <p className="text-sm">{event.location}</p>
-              </div>
-            </CardContent>
-          </Card>
+          <Link href={`/event/${event.id}`} key={event.id}>
+            <Card key={event.id} className="w-full">
+              <Image
+                src={event.image}
+                alt={event.name}
+                width={300}
+                height={200}
+                className="w-full h-48 object-cover"
+              />
+              <CardContent className="mt-4">
+                <h3 className="text-lg font-semibold">{event.name}</h3>
+                <p className="text-sm text-gray-500">{event.date}</p>
+                <p className="text-sm font-bold">KES {event.price}</p>
+                <div className="flex items-center mt-2">
+                  <MapPin size={16} className="mr-1" />
+                  <p className="text-sm">{event.location}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
         ))}
       </div>
       {events.length > (isMobile ? 2 : 4) && (

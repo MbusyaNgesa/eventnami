@@ -18,3 +18,11 @@ export interface Genre {
   name: string;
   image: string;
 }
+
+export interface Vendor {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  services: string[];
+}
