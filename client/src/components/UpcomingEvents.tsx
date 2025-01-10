@@ -63,7 +63,7 @@ export default function UpcomingEvents({
                 alt={event.name}
                 width={300}
                 height={200}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover rounded-lg"
               />
               <CardContent className="mt-4">
                 <h3 className="text-lg font-semibold">{event.name}</h3>

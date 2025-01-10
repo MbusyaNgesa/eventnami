@@ -1,4 +1,5 @@
-import { Event, Memory, Genre } from "@/types";
+import { Event, Memory, Genre, Vendor } from "@/types";
+import icon1 from "../img/icon1.jpg";
 
 export const mockEvents: Event[] = [
   {
@@ -7,7 +8,8 @@ export const mockEvents: Event[] = [
     date: "2024-07-15",
     price: 2000,
     location: "Nairobi, Kenya",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/afro.jpg",
+    genre: "Afro",
   },
   {
     id: "2",
@@ -16,14 +18,16 @@ export const mockEvents: Event[] = [
     price: 1500,
     location: "Mombasa, Kenya",
     image: "/placeholder.svg?height=200&width=300",
+    genre: "Reggae",
   },
   {
     id: "3",
-    name: "Jazz Evening",
+    name: "Reggae Evening",
     date: "2024-07-29",
     price: 2500,
     location: "Kisumu, Kenya",
     image: "/placeholder.svg?height=200&width=300",
+    genre: "Reggae",
   },
   {
     id: "4",
@@ -32,6 +36,7 @@ export const mockEvents: Event[] = [
     price: 3000,
     location: "Nakuru, Kenya",
     image: "/placeholder.svg?height=200&width=300",
+    genre: "Rock",
   },
   {
     id: "5",
@@ -40,6 +45,7 @@ export const mockEvents: Event[] = [
     price: 1800,
     location: "Eldoret, Kenya",
     image: "/placeholder.svg?height=200&width=300",
+    genre: "Trap",
   },
 ];
 
@@ -47,10 +53,7 @@ export const mockMemories: Memory[] = [
   {
     id: "1",
     month: "January",
-    images: [
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-    ],
+    images: ["/images/afro.jpg", "/placeholder.svg?height=200&width=300"],
   },
   {
     id: "2",
@@ -82,26 +85,57 @@ export const mockGenres: Genre[] = [
   {
     id: "1",
     name: "Afro",
-    image: "/placeholder.svg?height=160&width=256",
+    image: "/images/afro.jpg",
   },
   {
     id: "2",
     name: "Pop",
-    image: "/placeholder.svg?height=160&width=256",
+    image: "/images/afro.jpg",
   },
   {
     id: "3",
     name: "Rock",
-    image: "/placeholder.svg?height=160&width=256",
+    image: "/images/afro.jpg",
   },
   {
     id: "4",
-    name: "Jazz",
-    image: "/placeholder.svg?height=160&width=256",
+    name: "Reggae",
+    image: "/images/afro.jpg",
   },
   {
     id: "5",
     name: "Hip Hop",
-    image: "/placeholder.svg?height=160&width=256",
+    image: "/images/afro.jpg",
+  },
+];
+
+export const mockVendors: Vendor[] = [
+  {
+    id: "1",
+    name: "Tasty Bites Catering",
+    image: "/placeholder.svg?height=200&width=300",
+    description: "Premium catering services for all your event needs.",
+    services: ["Food & Beverages", "Setup", "Staff"],
+  },
+  {
+    id: "2",
+    name: "Sound Masters",
+    image: "/placeholder.svg?height=200&width=300",
+    description: "Professional sound and lighting equipment.",
+    services: ["Sound System", "Lighting", "DJ Services"],
+  },
+  {
+    id: "3",
+    name: "Decor Dreams",
+    image: "/placeholder.svg?height=200&width=300",
+    description: "Transform your venue with our elegant decorations.",
+    services: ["Event Styling", "Floral Arrangements", "Props"],
+  },
+  {
+    id: "4",
+    name: "Photo Perfect",
+    image: "/placeholder.svg?height=200&width=300",
+    description: "Capture your memories with our professional photography.",
+    services: ["Photography", "Videography", "Photo Booth"],
   },
 ];

@@ -5,6 +5,7 @@ export interface Event {
   price: number;
   location: string;
   image: string;
+  genre: string;
 }
 
 export interface Memory {
@@ -25,4 +26,15 @@ export interface Vendor {
   image: string;
   description: string;
   services: string[];
+}
+
+export interface TicketType {
+  type: "Advance" | "Regular" | "VIP";
+  price: number;
+}
+
+export interface TicketSelection {
+  type: string;
+  quantity: number;
+  totalPrice: number;
 }

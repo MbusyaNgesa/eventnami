@@ -47,7 +47,7 @@ export function VendorCard({ vendor }: VendorCardProps) {
                 height={300}
                 className="w-full h-48 object-cover rounded-lg mb-4"
               />
-              <p className="mb-4 text-gray-700">{vendor.description}</p>
+              <div className="mb-4 text-gray-700">{vendor.description}</div>
               <h4 className="font-semibold mb-2">Services:</h4>
               <ul className="list-disc list-inside space-y-1">
                 {vendor.services.map((service) => (
