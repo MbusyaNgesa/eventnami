@@ -51,12 +51,17 @@ export const mockEvents: Event[] = [
 export const mockMemories: Memory[] = [
   {
     id: "1",
-    month: "January",
-    images: ["/images/afro.jpg", "/placeholder.svg?height=200&width=300"],
+    eventName: "January",
+    images: [
+      "/images/afro.jpg",
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300",
+      "/placeholder.svg?height=200&width=300",
+    ],
   },
   {
     id: "2",
-    month: "February",
+    eventName: "February",
     images: [
       "/placeholder.svg?height=200&width=300",
       "/placeholder.svg?height=200&width=300",
@@ -64,7 +69,7 @@ export const mockMemories: Memory[] = [
   },
   {
     id: "3",
-    month: "March",
+    eventName: "March",
     images: [
       "/placeholder.svg?height=200&width=300",
       "/placeholder.svg?height=200&width=300",
@@ -72,7 +77,7 @@ export const mockMemories: Memory[] = [
   },
   {
     id: "4",
-    month: "April",
+    eventName: "April",
     images: [
       "/placeholder.svg?height=200&width=300",
       "/placeholder.svg?height=200&width=300",

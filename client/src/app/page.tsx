@@ -2,13 +2,11 @@ import UpcomingEvents from "@/components/UpcomingEvents";
 import Memories from "@/components/Memories";
 import Genre from "@/components/Genre";
 import { mockEvents, mockMemories, mockGenres } from "@/lib/mockData";
-import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <main className="container mx-auto px-4 py-8">
         <section>
           <Hero />

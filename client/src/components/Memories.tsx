@@ -14,7 +14,7 @@ export default function Memories({ memories }: MemoriesProps) {
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
   const selectedMemory = memories.find(
-    (memory) => memory.month === selectedMonth
+    (memory) => memory.eventName === selectedMonth
   );
 
   return (
@@ -25,9 +25,9 @@ export default function Memories({ memories }: MemoriesProps) {
             key={memory.id}
             variant="ghost"
             className="w-full justify-start mb-2"
-            onClick={() => setSelectedMonth(memory.month)}
+            onClick={() => setSelectedMonth(memory.eventName)}
           >
-            {memory.month}
+            {memory.eventName}
           </Button>
         ))}
       </ScrollArea>
@@ -35,7 +35,7 @@ export default function Memories({ memories }: MemoriesProps) {
         {selectedMemory ? (
           <div>
             <h3 className="text-lg font-semibold mb-4">
-              {selectedMemory.month} Memories
+              {selectedMemory.eventName} Memories
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {selectedMemory.images.slice(0, 2).map((image, index) => (

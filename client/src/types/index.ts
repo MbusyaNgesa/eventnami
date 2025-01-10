@@ -10,7 +10,7 @@ export interface Event {
 
 export interface Memory {
   id: string;
-  month: string;
+  eventName: string;
   images: string[];
 }
 
