@@ -1,5 +1,4 @@
 import { Event, Memory, Genre, Vendor } from "@/types";
-import icon1 from "../img/icon1.jpg";
 
 export const mockEvents: Event[] = [
   {
