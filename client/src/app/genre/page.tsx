@@ -6,7 +6,7 @@ import { mockEvents } from "@/lib/mockData";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import { Button } from "@/components/ui/button";
 
-const genres = ["All", "Jazz", "Pop", "Rock", "Classical", "Hip Hop"];
+const genres = ["All", "Jazz", "Pop", "Rock", "Reggae", "Hip Hop"];
 
 export default function GenrePage() {
   const searchParams = useSearchParams();

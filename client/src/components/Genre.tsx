@@ -25,7 +25,7 @@ export default function Genre({ genres }: GenreProps) {
     });
 
     let scrollInterval: NodeJS.Timeout;
-    let resetTimeout: NodeJS.Timeout | null = null;
+    const resetTimeout: NodeJS.Timeout | null = null;
 
     const startScroll = () => {
       scrollInterval = setInterval(() => {
