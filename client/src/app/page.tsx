@@ -23,6 +23,7 @@ export default function Home() {
 
         <section>
           <h2 className="text-2xl font-bold mb-4">Genres New</h2>
+
           <Genre genres={mockGenres} />
         </section>
       </main>
