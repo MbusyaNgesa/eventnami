@@ -10,7 +10,7 @@ interface EventListProps {
 }
 
 export function EventList({ events }: EventListProps) {
-  const [activeTab, setActiveTab] = useState("current");
+  // const [activeTab, setActiveTab] = useState("current");
 
   const currentDate = new Date();
   const currentEvents = events.filter(
