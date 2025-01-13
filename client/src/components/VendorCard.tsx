@@ -39,25 +39,25 @@ export function VendorCard({ vendor }: VendorCardProps) {
             <DialogTitle className="text-xl font-bold mb-4">
               {vendor.name}
             </DialogTitle>
-            <DialogDescription>
-              <Image
-                src={vendor.image}
-                alt={vendor.name}
-                width={400}
-                height={300}
-                className="w-full h-48 object-cover rounded-lg mb-4"
-              />
-              <div className="mb-4 text-gray-700">{vendor.description}</div>
-              <h4 className="font-semibold mb-2">Services:</h4>
-              <ul className="list-disc list-inside space-y-1">
-                {vendor.services.map((service) => (
-                  <li key={service} className="text-gray-700">
-                    {service}
-                  </li>
-                ))}
-              </ul>
-            </DialogDescription>
+            <DialogDescription>{vendor.description}</DialogDescription>
           </DialogHeader>
+          <div>
+            <Image
+              src={vendor.image}
+              alt={vendor.name}
+              width={400}
+              height={300}
+              className="w-full h-48 object-cover rounded-lg mb-4"
+            />
+            <h4 className="font-semibold mb-2">Services:</h4>
+            <ul className="list-disc list-inside space-y-1">
+              {vendor.services.map((service) => (
+                <li key={service} className="text-gray-700">
+                  {service}
+                </li>
+              ))}
+            </ul>
+          </div>
         </DialogContent>
       </Dialog>
     </>

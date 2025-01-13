@@ -8,7 +8,7 @@ export default function OrganizerLayout({
   return (
     <div className="flex min-h-screen bg-background">
       <OrganizerSidebar />
-      <main className="flex-1 ml-64">{children}</main>
+      <main className="flex-1 ml-0 md:ml-64">{children}</main>
     </div>
   );
 }

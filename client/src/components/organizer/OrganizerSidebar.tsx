@@ -1,11 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Menu, Upload, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
+//import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export function OrganizerSidebar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navigation = [
     {
@@ -22,10 +28,12 @@ export function OrganizerSidebar() {
     },
   ];
 
-  return (
-    <div className="flex h-screen w-64 flex-col fixed left-0 top-0 border-r bg-card">
+  const SidebarContent = () => (
+    <div className="flex h-full flex-col">
       <div className="p-6">
-        <h1 className="text-xl font-bold">Eventlify Listers</h1>
+        <Link href="/organizer" className="block">
+          <h1 className="text-xl font-bold">Eventlify Listers</h1>
+        </Link>
       </div>
 
       <nav className="flex-1 px-4 py-4">
@@ -45,5 +53,34 @@ export function OrganizerSidebar() {
         ))}
       </nav>
     </div>
+  );
+
+  return (
+    <>
+      {/* Mobile Trigger */}
+      <Button
+        variant="outline"
+        size="icon"
+        className="fixed top-4 left-4 z-40 md:hidden"
+        onClick={() => setIsOpen(true)}
+      >
+        <Menu className="h-4 w-4" />
+      </Button>
+
+      {/* Mobile Sheet */}
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <SheetContent side="left" className="p-0 w-64">
+          {/* <VisuallyHidden>
+          <DialogTitle>Navigation Menu</DialogTitle>
+        </VisuallyHidden> */}
+          <SidebarContent />
+        </SheetContent>
+      </Sheet>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:flex h-screen w-64 flex-col fixed left-0 top-0 border-r bg-card">
+        <SidebarContent />
+      </div>
+    </>
   );
 }
