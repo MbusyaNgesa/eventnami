@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import { connectDB } from "./db/connectDB.js";
 import eventRoutes from "./routes/v1/eventRoutes.js";
@@ -15,6 +16,8 @@ const PORT = process.env.PORT || 5002;
 // app.get("/", (req, res) => {
 //   res.send("Home route is up");
 // });
+
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.use(express.json()); //allows us to accept JSON data in body(what user passes)
 app.use("/api/v1", eventRoutes);

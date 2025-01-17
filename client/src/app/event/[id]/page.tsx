@@ -10,7 +10,6 @@ import { VendorCarousel } from "@/components/VendorCarousel";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import { mockEvents, mockVendors } from "@/lib/mockData";
 import { TicketSelection, TicketType } from "@/types";
-
 interface EventDetailsProps {
   params: Promise<{
     id: string;
@@ -18,9 +17,8 @@ interface EventDetailsProps {
 }
 
 export default function EventDetails({ params }: EventDetailsProps) {
-  // const { id } = use(params as Promise<{ id: string }>);
   const { id } = use(params);
-  const event = mockEvents.find((e) => e.id === id);
+  const event = mockEvents.find((e) => e._id === id);
   const [ticketSelections, setTicketSelections] = useState<TicketSelection[]>(
     []
   );
@@ -45,7 +43,7 @@ export default function EventDetails({ params }: EventDetailsProps) {
   );
 
   const similarEvents = mockEvents.filter(
-    (e) => e.genre === event.genre && e.id !== event.id
+    (e) => e.genre === event.genre && e._id !== event._id
   );
 
   return (

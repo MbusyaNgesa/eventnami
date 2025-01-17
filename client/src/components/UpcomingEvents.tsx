@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 import { MapPin } from "lucide-react";
 import { Event } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -15,12 +16,35 @@ interface UpcomingEventsProps {
 }
 
 export default function UpcomingEvents({
-  events = [],
-  isLoading = false,
+  events: propEvents = [],
+  isLoading: propIsLoading = false,
 }: UpcomingEventsProps) {
+  const [events, setEvents] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
-  // const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const [isMobile, setIsMobile] = useState(false);
+
+  //fetching from server
+  useEffect(() => {
+    if (!propEvents.length) {
+      const fetchEvents = async () => {
+        setIsLoading(true);
+        try {
+          const response = await axios.get(
+            "http://localhost:5002/api/v1/event"
+          );
+          console.log("Fetched Events:", response.data);
+          setEvents(response.data.data || []);
+        } catch (error) {
+          console.error("Error fetching events:", error);
+          setEvents([]);
+        } finally {
+          setIsLoading(false);
+        }
+      };
+      fetchEvents();
+    }
+  }, [propEvents]);
 
   useEffect(() => {
     const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
@@ -29,7 +53,14 @@ export default function UpcomingEvents({
     return () => window.removeEventListener("resize", updateIsMobile);
   }, []);
 
-  const displayEvents = showAll ? events : events.slice(0, isMobile ? 2 : 4);
+  // const displayEvents = showAll ? events : events.slice(0, isMobile ? 2 : 4);
+  const displayEvents = showAll
+    ? events
+    : (events || []).slice(0, isMobile ? 2 : 4);
+
+  if (!Array.isArray(events)) {
+    return <p className="text-center text-lg">No events available</p>;
+  }
 
   if (isLoading) {
     return (
@@ -56,8 +87,8 @@ export default function UpcomingEvents({
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {displayEvents.map((event) => (
-          <Link href={`/event/${event.id}`} key={event.id}>
-            <Card key={event.id} className="w-full">
+          <Link href={`/event/${event._id}`} key={event._id}>
+            <Card className="w-full">
               <Image
                 src={event.image}
                 alt={event.name}
@@ -67,12 +98,13 @@ export default function UpcomingEvents({
               />
               <CardContent className="mt-4">
                 <h3 className="text-lg font-semibold">{event.name}</h3>
-                <p className="text-sm text-gray-500">{event.date}</p>
+                {/* <p className="text-sm text-gray-500">{event.date}</p> */}
                 <p className="text-sm font-bold">KES {event.price}</p>
                 <div className="flex items-center mt-2">
                   <MapPin size={16} className="mr-1" />
-                  <p className="text-sm">{event.location}</p>
+                  {/* <p className="text-sm">{event.location}</p> */}
                 </div>
+                <p className="text-sm">{event.genre}</p>
               </CardContent>
             </Card>
           </Link>
@@ -94,3 +126,22 @@ export default function UpcomingEvents({
     </div>
   );
 }
+
+// useEffect(() => {
+//   if (!propEvents.length) {
+//   }
+//   const fetchEvents = async () => {
+//     try {
+//       const response = await axios.get("http://localhost:5002/api/v1/event");
+//       console.log("Fetched Events:", response.data);
+//       // setEvents(response.data || []);
+//       setEvents(response.data.data || []); // Use response.data.data for the array
+//     } catch (error) {
+//       console.error("Error fetching events:", error);
+//       setEvents([]);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+//   fetchEvents();
+// }, []);
