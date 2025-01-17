@@ -12,11 +12,11 @@ import { mockEvents, mockVendors } from "@/lib/mockData";
 import { TicketSelection, TicketType } from "@/types";
 import { useParams } from "next/navigation";
 import axios from "axios";
-interface EventDetailsProps {
-  params: Promise<{
-    id: string;
-  }>;
-}
+// interface EventDetailsProps {
+//   params: Promise<{
+//     id: string;
+//   }>;
+// }
 
 export default function EventDetails() {
   // const { id } = use(params);
@@ -137,7 +137,7 @@ export default function EventDetails() {
 
       <section>
         <h2 className="text-2xl font-bold mb-4">Events You May Like</h2>
-        <UpcomingEvents events={similarEvents} isLoading={false} />
+        <UpcomingEvents isLoading={false} />
       </section>
     </div>
   );

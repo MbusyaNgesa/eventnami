@@ -17,12 +17,12 @@ export default function GenrePage({ params }: GenrePageProps) {
   const { id } = use(params);
   const [selectedGenre, setSelectedGenre] = useState(id);
 
-  const filteredEvents =
-    selectedGenre === "All"
-      ? mockEvents
-      : mockEvents.filter(
-          (event) => event.genre.toLowerCase() === selectedGenre.toLowerCase()
-        );
+  // const filteredEvents =
+  //   selectedGenre === "All"
+  //     ? mockEvents
+  //     : mockEvents.filter(
+  //         (event) => event.genre.toLowerCase() === selectedGenre.toLowerCase()
+  //       );
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -37,7 +37,7 @@ export default function GenrePage({ params }: GenrePageProps) {
           </Button>
         ))}
       </div>
-      <UpcomingEvents events={filteredEvents} isLoading={false} />
+      <UpcomingEvents isLoading={false} />
     </div>
   );
 }

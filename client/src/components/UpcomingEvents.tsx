@@ -11,14 +11,11 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface UpcomingEventsProps {
-  events: Event[];
   isLoading: boolean;
 }
 
-export default function UpcomingEvents({
-  events: propEvents = [],
-  isLoading: propIsLoading = false,
-}: UpcomingEventsProps) {
+export default function UpcomingEvents({}: // isLoading: propIsLoading = false,
+UpcomingEventsProps) {
   const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showAll, setShowAll] = useState(false);
@@ -26,28 +23,26 @@ export default function UpcomingEvents({
 
   //fetching from server
   useEffect(() => {
-    if (!propEvents.length) {
-      const fetchEvents = async () => {
-        setIsLoading(true);
-        try {
-          const response = await axios.get(
-            "http://localhost:5002/api/v1/event"
-          );
-          console.log("Fetched Events:", response.data);
-          setEvents(response.data.data || []);
-        } catch (error) {
-          console.error("Error fetching events:", error);
-          setEvents([]);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      fetchEvents();
-    } else {
-      setEvents(propEvents);
-      setIsLoading(propIsLoading);
-    }
-  }, [propEvents, propIsLoading]);
+    // if (!propEvents.length) {
+    const fetchEvents = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get("http://localhost:5002/api/v1/event");
+        console.log("Fetched Events:", response.data);
+        setEvents(response.data.data || []);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+        setEvents([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchEvents();
+    // } else {
+    //   setEvents(propEvents);
+    //   setIsLoading(propIsLoading);
+    // }
+  }, []);
 
   useEffect(() => {
     const updateIsMobile = () => setIsMobile(window.innerWidth < 768);

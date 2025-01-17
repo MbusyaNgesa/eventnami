@@ -32,12 +32,12 @@ function GenreContent() {
     }
   }, [searchParams]);
 
-  const filteredEvents =
-    selectedGenre === "all"
-      ? mockEvents
-      : mockEvents.filter(
-          (event) => event.genre.toLowerCase() === selectedGenre
-        );
+  // const filteredEvents =
+  //   selectedGenre === "all"
+  //     ? mockEvents
+  //     : mockEvents.filter(
+  //         (event) => event.genre.toLowerCase() === selectedGenre
+  //       );
 
   return (
     <>
@@ -54,7 +54,7 @@ function GenreContent() {
           </Button>
         ))}
       </div>
-      <UpcomingEvents events={filteredEvents} isLoading={false} />
+      <UpcomingEvents isLoading={false} />
     </>
   );
 }
