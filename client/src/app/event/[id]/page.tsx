@@ -74,9 +74,9 @@ export default function EventDetails() {
     0
   );
 
-  const similarEvents = mockEvents.filter(
-    (e) => e.genre === event.genre && e._id !== event._id
-  );
+  // const similarEvents = mockEvents.filter(
+  //   (e) => e.genre === event.genre && e._id !== event._id
+  // );
 
   return (
     <div className="container mx-auto px-4 py-8">

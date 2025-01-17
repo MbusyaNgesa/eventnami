@@ -117,9 +117,9 @@ UpcomingEventsProps) {
       {events.length > (isMobile ? 2 : 4) && (
         <CardFooter className="flex justify-center mt-4">
           {isMobile ? (
-            <Link href="/genre">
-              <Button>Show More</Button>
-            </Link>
+            <Button onClick={() => setShowAll(!showAll)}>
+              {showAll ? "Show Less" : "Show More"}
+            </Button>
           ) : (
             <Button onClick={() => setShowAll(!showAll)}>
               {showAll ? "Show Less" : "Show More"}
