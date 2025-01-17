@@ -1,7 +1,6 @@
 "use client";
 
 import { use, useState } from "react";
-import { mockEvents } from "@/lib/mockData";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import { Button } from "@/components/ui/button";
 

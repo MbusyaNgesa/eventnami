@@ -117,7 +117,7 @@ UpcomingEventsProps) {
       {events.length > (isMobile ? 2 : 4) && (
         <CardFooter className="flex justify-center mt-4">
           {isMobile ? (
-            <Link href="/events">
+            <Link href="/genre">
               <Button>Show More</Button>
             </Link>
           ) : (

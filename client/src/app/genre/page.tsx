@@ -2,7 +2,6 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { mockEvents } from "@/lib/mockData";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import { Button } from "@/components/ui/button";
 
