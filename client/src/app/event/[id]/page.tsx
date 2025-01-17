@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,18 +10,50 @@ import { VendorCarousel } from "@/components/VendorCarousel";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import { mockEvents, mockVendors } from "@/lib/mockData";
 import { TicketSelection, TicketType } from "@/types";
+import { useParams } from "next/navigation";
+import axios from "axios";
 interface EventDetailsProps {
   params: Promise<{
     id: string;
   }>;
 }
 
-export default function EventDetails({ params }: EventDetailsProps) {
-  const { id } = use(params);
-  const event = mockEvents.find((e) => e._id === id);
+export default function EventDetails() {
+  // const { id } = use(params);
+  const { id } = useParams();
+  // const event = mockEvents.find((e) => e._id === id);
+  const [event, setEvent] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [ticketSelections, setTicketSelections] = useState<TicketSelection[]>(
     []
   );
+
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5002/api/v1/event/${id}`
+        );
+        console.log("Fetched event:", response.data);
+        setEvent(response.data); // Adjust based on your backend response structure
+      } catch (error) {
+        console.error("Error fetching event:", error);
+        setEvent(null);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchEvent();
+  }, [id]);
+
+  useEffect(() => {
+    console.log("Event details:", event);
+  }, [event]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   if (!event) {
     return <div>Event not found</div>;
@@ -50,12 +82,15 @@ export default function EventDetails({ params }: EventDetailsProps) {
     <div className="container mx-auto px-4 py-8">
       <Card className="mb-8">
         <Image
-          src={event.image}
-          alt={event.name}
+          src={
+            event.image ? `http://localhost:5002${event.image}` : "/summer2.jpg"
+          }
+          alt={event.name || "No Event Pic"}
           width={800}
           height={400}
           className="w-full h-[400px] object-cover rounded-t-lg"
         />
+
         <CardContent className="p-6">
           <h1 className="text-3xl font-bold mb-4">{event.name}</h1>
           <p className="text-lg mb-2">{event.date}</p>

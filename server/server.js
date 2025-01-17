@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import { connectDB } from "./db/connectDB.js";
 import eventRoutes from "./routes/v1/eventRoutes.js";
@@ -16,6 +18,12 @@ const PORT = process.env.PORT || 5002;
 // app.get("/", (req, res) => {
 //   res.send("Home route is up");
 // });
+
+//Getting static images
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 

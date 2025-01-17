@@ -43,8 +43,11 @@ export default function UpcomingEvents({
         }
       };
       fetchEvents();
+    } else {
+      setEvents(propEvents);
+      setIsLoading(propIsLoading);
     }
-  }, [propEvents]);
+  }, [propEvents, propIsLoading]);
 
   useEffect(() => {
     const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
@@ -57,6 +60,8 @@ export default function UpcomingEvents({
   const displayEvents = showAll
     ? events
     : (events || []).slice(0, isMobile ? 2 : 4);
+  console.log("Events state:", events);
+  console.log("Display events:", displayEvents);
 
   if (!Array.isArray(events)) {
     return <p className="text-center text-lg">No events available</p>;
@@ -90,7 +95,11 @@ export default function UpcomingEvents({
           <Link href={`/event/${event._id}`} key={event._id}>
             <Card className="w-full">
               <Image
-                src={event.image}
+                src={
+                  event.image
+                    ? `http://localhost:5002${event.image}`
+                    : "/placeholder.jpg"
+                }
                 alt={event.name}
                 width={300}
                 height={200}
