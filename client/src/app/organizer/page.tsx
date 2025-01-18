@@ -48,7 +48,7 @@ export default function OrganizerDashboard() {
             <TabsContent value="current" className="mt-4">
               <div className="space-y-4">
                 {currentEvents.map((event) => (
-                  <Card key={event.id} className="p-4">
+                  <Card key={event._id} className="p-4">
                     <h3 className="font-semibold">{event.name}</h3>
                     <p className="text-sm text-muted-foreground">
                       {event.date}
@@ -60,7 +60,7 @@ export default function OrganizerDashboard() {
             <TabsContent value="past" className="mt-4">
               <div className="space-y-4">
                 {pastEvents.map((event) => (
-                  <Card key={event.id} className="p-4">
+                  <Card key={event._id} className="p-4">
                     <h3 className="font-semibold">{event.name}</h3>
                     <p className="text-sm text-muted-foreground">
                       {event.date}

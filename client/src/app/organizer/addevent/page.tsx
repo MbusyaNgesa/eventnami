@@ -26,7 +26,7 @@ export default function AddEvent() {
     const formData = new FormData(e.currentTarget);
 
     const newEvent: EventDraft = {
-      id: (mockEventDrafts.length + 1).toString(),
+      _id: (mockEventDrafts.length + 1).toString(),
       name: formData.get("name") as string,
       date: formData.get("date") as string,
       price: Number(formData.get("price")),

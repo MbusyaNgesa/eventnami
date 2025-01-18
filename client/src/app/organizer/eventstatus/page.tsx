@@ -29,7 +29,7 @@ export default function EventStatus() {
         <TabsContent value="approved">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {approvedEvents.map((event) => (
-              <Card key={event.id}>
+              <Card key={event._id}>
                 <CardContent className="p-4">
                   <h3 className="font-semibold">{event.name}</h3>
                   <p className="text-sm text-muted-foreground">{event.date}</p>
@@ -43,7 +43,7 @@ export default function EventStatus() {
         <TabsContent value="pending">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {pendingEvents.map((event) => (
-              <Card key={event.id}>
+              <Card key={event._id}>
                 <CardContent className="p-4">
                   <h3 className="font-semibold">{event.name}</h3>
                   <p className="text-sm text-muted-foreground">{event.date}</p>
@@ -57,7 +57,7 @@ export default function EventStatus() {
         <TabsContent value="declined">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {declinedEvents.map((event) => (
-              <Card key={event.id}>
+              <Card key={event._id}>
                 <CardContent className="p-4">
                   <h3 className="font-semibold">{event.name}</h3>
                   <p className="text-sm text-muted-foreground">{event.date}</p>
