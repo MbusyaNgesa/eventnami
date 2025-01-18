@@ -31,7 +31,7 @@ export function EventList({ events }: EventListProps) {
           <TabsContent value="current">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {currentEvents.map((event) => (
-                <Card key={event.id}>
+                <Card key={event._id}>
                   <CardContent className="p-4">
                     <h3 className="font-semibold">{event.name}</h3>
                     <p className="text-sm text-muted-foreground">
@@ -45,7 +45,7 @@ export function EventList({ events }: EventListProps) {
           <TabsContent value="past">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {pastEvents.map((event) => (
-                <Card key={event.id}>
+                <Card key={event._id}>
                   <CardContent className="p-4">
                     <h3 className="font-semibold">{event.name}</h3>
                     <p className="text-sm text-muted-foreground">

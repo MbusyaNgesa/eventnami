@@ -43,7 +43,7 @@ export default function EventDetails() {
           `http://localhost:5002/api/v1/event/${id}`
         );
         console.log("Fetched event:", response.data);
-        setEvent(response.data); // Adjust based on your backend response structure
+        setEvent(response.data.data); // Adjust based on your backend response structure
       } catch (error) {
         console.error("Error fetching event:", error);
         setEvent(null);

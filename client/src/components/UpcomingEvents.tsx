@@ -106,7 +106,7 @@ UpcomingEventsProps) {
                 <p className="text-sm font-bold">KES {event.price}</p>
                 <div className="flex items-center mt-2">
                   <MapPin size={16} className="mr-1" />
-                  {/* <p className="text-sm">{event.location}</p> */}
+                  <p className="text-sm">{event.location}</p>
                 </div>
                 <p className="text-sm">{event.genre}</p>
               </CardContent>

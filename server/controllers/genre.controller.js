@@ -22,6 +22,8 @@ export const createGenre = async (req, res) => {
 export const getAllGenres = async (req, res) => {
   try {
     const genre = await Genre.find();
+    // const genre = await Genre.find().select("genreName -_id"); // Fetch only genreName
+    // const genreNames = genre.map((g) => g.genreName); // Extract genreName values
 
     res.status(200).json({ success: true, data: genre });
   } catch (error) {

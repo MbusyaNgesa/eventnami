@@ -4,20 +4,58 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import { Button } from "@/components/ui/button";
+import axios from "axios";
+import { Skeleton } from "@/components/ui/skeleton";
+// import axios from "axios";
 
-const genres = ["All", "Jazz", "Pop", "Rock", "Reggae", "Hip Hop"];
+// const genres = ["All", "Jazzp", "Pop", "Rock", "Reggae", "Hip Hop"];
 
 export default function GenrePage() {
+  const [genres, setGenre] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchGenre = async () => {
+      try {
+        // const response = await axios.get(`http://localhost:5002/api/v1/genre`);
+        // setGenre(response.data.data || []);
+
+        const response = await axios.get<{
+          success: boolean;
+          data: { genreName: string }[];
+        }>(`http://localhost:5002/api/v1/genre`);
+        setGenre(
+          Array.isArray(response.data.data)
+            ? response.data.data.map((g) => g.genreName || "")
+            : []
+        );
+      } catch (error) {
+        console.error("Error fetching genres:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchGenre();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Skeleton>
+        <div>Loading...</div>;
+      </Skeleton>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <Suspense fallback={<div>Loading genres...</div>}>
-        <GenreContent />
+        <GenreContent genres={genres} />
       </Suspense>
     </div>
   );
 }
 
-function GenreContent() {
+function GenreContent({ genres }: { genres: string[] }) {
   const searchParams = useSearchParams();
   const initialGenre = searchParams.get("selected") || "all";
   const [selectedGenre, setSelectedGenre] = useState(

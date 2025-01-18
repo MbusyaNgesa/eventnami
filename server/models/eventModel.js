@@ -9,7 +9,8 @@ const eventSchema = new mongoose.Schema(
     totalTickets: { type: Number },
     availableTickets: { type: Number },
     genre: {
-      type: mongoose.Schema.Types.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "Genre",
       required: true,
     },
