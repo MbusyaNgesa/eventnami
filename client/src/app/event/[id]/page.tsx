@@ -8,7 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { TicketCounter } from "@/components/TicketCounter";
 import { VendorCarousel } from "@/components/VendorCarousel";
 import UpcomingEvents from "@/components/UpcomingEvents";
-import { mockEvents, mockVendors } from "@/lib/mockData";
+import { mockVendors } from "@/lib/mockData";
 import { TicketSelection, TicketType } from "@/types";
 import { useParams } from "next/navigation";
 import axios from "axios";
@@ -17,12 +17,20 @@ import axios from "axios";
 //     id: string;
 //   }>;
 // }
+interface Event {
+  name: string;
+  date: string;
+  location: string;
+  genre: string;
+  image?: string; // Add this if image is optional
+  price: number; // Add other properties as needed
+}
 
 export default function EventDetails() {
   // const { id } = use(params);
   const { id } = useParams();
   // const event = mockEvents.find((e) => e._id === id);
-  const [event, setEvent] = useState<any>(null);
+  const [event, setEvent] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [ticketSelections, setTicketSelections] = useState<TicketSelection[]>(
     []
