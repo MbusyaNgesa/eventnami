@@ -1,46 +1,3 @@
-// "use client";
-
-// import { use, useState } from "react";
-// import UpcomingEvents from "@/components/UpcomingEvents";
-// import { Button } from "@/components/ui/button";
-
-// const genres = ["All", "Jazz", "Pop", "Rock", "Reggae", "Hip Hop"];
-
-// interface GenrePageProps {
-//   params: Promise<{
-//     id: string;
-//   }>;
-// }
-
-// export default function GenrePage({ params }: GenrePageProps) {
-//   const { id } = use(params);
-//   const [selectedGenre, setSelectedGenre] = useState(id);
-
-//   // const filteredEvents =
-//   //   selectedGenre === "All"
-//   //     ? mockEvents
-//   //     : mockEvents.filter(
-//   //         (event) => event.genre.toLowerCase() === selectedGenre.toLowerCase()
-//   //       );
-
-//   return (
-//     <div className="container mx-auto px-4 py-8">
-//       <div className="flex flex-wrap gap-4 mb-8">
-//         {genres.map((genre) => (
-//           <Button
-//             key={genre}
-//             variant={selectedGenre === genre ? "default" : "outline"}
-//             onClick={() => setSelectedGenre(genre)}
-//           >
-//             {genre}
-//           </Button>
-//         ))}
-//       </div>
-//       <UpcomingEvents isLoading={false} />
-//     </div>
-//   );
-// }
-
 "use client";
 
 import { use, useState, useEffect } from "react";
@@ -164,39 +121,4 @@ export default function GenrePage({ params }: GenrePageProps) {
       )}
     </div>
   );
-}
-
-{
-  /* <div className="flex flex-wrap gap-4 mb-8">
-            {genres.map((genre, index) => (
-              <Button
-                key={index}
-                variant={id === genre.toLowerCase() ? "default" : "outline"}
-                onClick={() => router.push(`/genre/${genre.toLowerCase()}`)}
-              >
-                {genre}
-              </Button>
-            ))}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredEvents.length > 0 ? (
-              filteredEvents.map((event) => (
-                <div key={event._id} className="card">
-                  <img
-                    src={event.image}
-                    alt={event.name}
-                    className="card-image"
-                  />
-                  <div className="card-body">
-                    <h3 className="card-title">{event.name}</h3>
-                    <p className="card-text">Genre: {event.genre}</p>
-                    <p className="card-text">Location: {event.location}</p>
-                    <p className="card-text">Price: KES {event.price}</p>
-                  </div>
-                </div>
-              ))
-            ) : (
-              <div>No events found for this genre.</div>
-            )}
-          </div> */
 }
