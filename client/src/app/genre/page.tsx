@@ -112,17 +112,19 @@
 
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
 
-// interface Genre {
-//   genreName: string;
-// }
+export const dynamic = "force-dynamic";
 
-function GenreContent() {
+interface Genre {
+  genreName: string;
+}
+
+export default function GenrePage() {
   const [genres, setGenres] = useState<string[]>([]);
   const [events, setEvents] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -131,18 +133,22 @@ function GenreContent() {
   const selectedGenre = searchParams.get("selected") || "all";
 
   useEffect(() => {
-    const fetchGenre = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get<{
-          success: boolean;
-          data: { genreName: string }[];
-        }>(`http://localhost:5002/api/v1/genre/all`);
-        setGenres((response.data.data || []).map((genre) => genre.genreName));
+        const [genreResponse, eventResponse] = await Promise.all([
+          axios.get<{
+            success: boolean;
+            data: { genreName: string }[];
+          }>("http://localhost:5002/api/v1/genre/all"),
+          axios.get<{
+            success: boolean;
+            data: any[];
+          }>("http://localhost:5002/api/v1/event"),
+        ]);
 
-        const eventResponse = await axios.get<{
-          success: boolean;
-          data: any[];
-        }>(`http://localhost:5002/api/v1/event`);
+        setGenres(
+          (genreResponse.data.data || []).map((genre) => genre.genreName)
+        );
         setEvents(eventResponse.data.data || []);
       } catch (error) {
         console.error("Error fetching genres or events:", error);
@@ -151,7 +157,7 @@ function GenreContent() {
       }
     };
 
-    fetchGenre();
+    fetchData();
   }, []);
 
   const filteredEvents =
@@ -210,7 +216,7 @@ function GenreContent() {
                     <h3 className="card-title">{event.name}</h3>
                     <p className="card-text">Genre: {event.genre}</p>
                     <p className="card-text">Location: {event.location}</p>
-                    <p className="card-text">Price: KES {event.price}</p>
+                    <p className="card-text">Price: ${event.price}</p>
                   </div>
                 </div>
               ))
@@ -221,13 +227,5 @@ function GenreContent() {
         </>
       )}
     </div>
-  );
-}
-
-export default function GenrePage() {
-  return (
-    <Suspense fallback={<div>Loading genres...</div>}>
-      <GenreContent />
-    </Suspense>
   );
 }
