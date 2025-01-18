@@ -5,6 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import axios from "axios";
+interface Genre {
+  genreName: string;
+}
 
 export default function GenrePage() {
   const [genres, setGenres] = useState<string[]>([]);

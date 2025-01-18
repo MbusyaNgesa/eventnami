@@ -48,6 +48,14 @@ import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+interface Event {
+  _id: string;
+  name: string;
+  genre: string;
+  location: string;
+  price: number;
+  image: string;
+}
 interface GenrePageProps {
   params: Promise<{
     id: string;
@@ -58,7 +66,7 @@ export default function GenrePage({ params }: GenrePageProps) {
   const router = useRouter();
 
   const { id } = use(params);
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [genres, setGenres] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
