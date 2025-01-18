@@ -62,7 +62,7 @@ export default function Genre({ genres }: GenreProps) {
         {genres.map((genre) => (
           <Link
             key={genre.id}
-            href={`/genre?selected=${genre.name.toLowerCase()}`}
+            href={`/genre/${genre.name.toLowerCase()}`}
             className="flex-shrink-0 mr-4"
           >
             <div

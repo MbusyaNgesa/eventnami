@@ -34,7 +34,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { title: "Events", href: "/#events" },
   { title: "Memory", href: "/memories" },
-  { title: "Genres", href: "/genre" },
+  { title: "Genres", href: "/#genre" },
 ];
 
 export function Navbar() {
@@ -88,22 +88,6 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Navigation Menu - hidden on mobile */}
-        {/* <NavigationMenu className="hidden md:flex ">
-          <NavigationMenuList className="bg-cyan-800 text-white">
-            {navItems.map((item) => (
-              <NavigationMenuItem key={item.title}>
-                <Link href={item.href} legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={`${navigationMenuTriggerStyle()} !bg-cyan-800 !text-white hover:!bg-cyan-700 hover:!text-white data-[active]:!bg-cyan-700 data-[state=open]:!bg-cyan-700`}
-                  >
-                    {item.title}
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            ))}
-          </NavigationMenuList>
-        </NavigationMenu> */}
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="bg-cyan-800 text-white">
             {navItems.map((item) => (

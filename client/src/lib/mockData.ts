@@ -2,7 +2,7 @@ import { Event, Memory, Genre, Vendor } from "@/types";
 
 export const mockEvents: Event[] = [
   {
-    id: "1",
+    _id: "1",
     name: "AfroFusion Night",
     date: "2024-07-15",
     price: 2000,
@@ -11,7 +11,7 @@ export const mockEvents: Event[] = [
     genre: "Afro",
   },
   {
-    id: "2",
+    _id: "2",
     name: "Reggae Bash",
     date: "2024-07-22",
     price: 1500,
@@ -20,7 +20,7 @@ export const mockEvents: Event[] = [
     genre: "Reggae",
   },
   {
-    id: "3",
+    _id: "3",
     name: "Reggae Evening",
     date: "2024-07-29",
     price: 2500,
@@ -29,7 +29,7 @@ export const mockEvents: Event[] = [
     genre: "Reggae",
   },
   {
-    id: "4",
+    _id: "4",
     name: "Rock Concert",
     date: "2024-08-05",
     price: 3000,
@@ -38,7 +38,7 @@ export const mockEvents: Event[] = [
     genre: "Rock",
   },
   {
-    id: "5",
+    _id: "5",
     name: "Hip Hop Showcase",
     date: "2024-08-12",
     price: 1800,

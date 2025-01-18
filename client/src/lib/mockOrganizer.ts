@@ -14,7 +14,7 @@ export const mockOrganizerProfile: OrganizerProfile = {
 
 export const mockEventDrafts: EventDraft[] = [
   {
-    id: "1",
+    _id: "1",
     name: "Jazz Night Extravaganza",
     date: "2024-02-15",
     price: 2000,
@@ -26,7 +26,7 @@ export const mockEventDrafts: EventDraft[] = [
     status: "approved",
   },
   {
-    id: "2",
+    _id: "2",
     name: "Rock Festival",
     date: "2024-03-01",
     price: 3000,

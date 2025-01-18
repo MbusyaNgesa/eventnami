@@ -10,7 +10,7 @@ import {
 const router = express.Router();
 
 router.post("/genre", createGenre);
-router.get("/genre", getAllGenres);
+router.get("/genre/all", getAllGenres);
 router.get("/genre/:id", getOneGenre);
 router.put("/genre/:id", updateGenre);
 router.delete("/genre/:id", deleteGenre);
