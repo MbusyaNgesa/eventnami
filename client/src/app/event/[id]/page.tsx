@@ -40,7 +40,8 @@ export default function EventDetails() {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5002/api/v1/event/${id}`
+          // `http://localhost:5002/api/v1/event/${id}`
+          `https://eventnami.onrender.com/${id}`
         );
         console.log("Fetched event:", response.data);
         setEvent(response.data.data); // Adjust based on your backend response structure
