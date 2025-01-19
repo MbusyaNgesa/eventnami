@@ -6,7 +6,7 @@ export const fetchGenresAndEvents = async () => {
     const genreResponse = await axios.get<{
       success: boolean;
       data: { genreName: string }[];
-    }>("http://localhost:5002/api/v1/genre");
+    }>("https://eventnami.onrender.com/api/v1/genre");
 
     const eventResponse = await axios.get<{
       success: boolean;
@@ -18,7 +18,7 @@ export const fetchGenresAndEvents = async () => {
         price: number;
         image: string;
       }[];
-    }>("http://localhost:5002/api/v1/event");
+    }>("https://eventnami.onrender.com/api/v1/event");
 
     return {
       genres: genreResponse.data.data || [],
