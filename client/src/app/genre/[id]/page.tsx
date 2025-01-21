@@ -33,7 +33,7 @@ export default function GenrePage({ params }: GenrePageProps) {
         const genreResponse = await axios.get<{
           success: boolean;
           data: { genreName: string }[];
-        }>("https://eventnami.onrender.com/api/v1/genre/all");
+        }>("http://localhost:5002/api/v1/genre/all");
 
         setGenres(
           (genreResponse.data.data || []).map((genre) => genre.genreName)
@@ -49,7 +49,7 @@ export default function GenrePage({ params }: GenrePageProps) {
             price: number;
             image: string;
           }[];
-        }>("https://eventnami.onrender.com/api/v1/event");
+        }>("http://localhost:5002/api/v1/event");
 
         setEvents(eventResponse.data.data || []);
       } catch (error) {

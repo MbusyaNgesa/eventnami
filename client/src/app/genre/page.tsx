@@ -139,11 +139,11 @@ export default function GenrePage() {
           axios.get<{
             success: boolean;
             data: { genreName: string }[];
-          }>("https://eventnami.onrender.com/api/v1/genre/all"),
+          }>("http://localhost:5002/api/v1/genre/all"),
           axios.get<{
             success: boolean;
             data: any[];
-          }>("https://eventnami.onrender.com/api/v1/event"),
+          }>("http://localhost:5002/api/v1/event"),
         ]);
 
         setGenres(

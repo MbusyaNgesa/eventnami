@@ -27,7 +27,7 @@ UpcomingEventsProps) {
     const fetchEvents = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("https://eventnami.onrender.com/api/v1/event");
+        const response = await axios.get("http://localhost:5002/api/v1/event");
         console.log("Fetched Events:", response.data);
         setEvents(response.data.data || []);
       } catch (error) {
@@ -92,7 +92,7 @@ UpcomingEventsProps) {
               <Image
                 src={
                   event.image
-                    ? `https://eventnami.onrender.com${event.image}`
+                    ? `http://localhost:5002${event.image}`
                     : "/placeholder.jpg"
                 }
                 alt={event.name}
