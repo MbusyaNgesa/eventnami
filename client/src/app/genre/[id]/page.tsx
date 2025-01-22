@@ -108,7 +108,7 @@ export default function GenrePage({ params }: GenrePageProps) {
                       <h3 className="card-title">{event.name}</h3>
                       <p className="card-text">Genre: {event.genre}</p>
                       <p className="card-text">Location: {event.location}</p>
-                      <p className="card-text">Price: ${event.price}</p>
+                      <p className="card-text">Price: KES {event.price}</p>
                     </div>
                   </div>
                 ))

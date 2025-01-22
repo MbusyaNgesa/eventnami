@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const memorySchema = new mongoose.Schema({
+  // memoryName: {
+  //   type: String,
+  //   required: true,
+  // },
   eventId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Event",
