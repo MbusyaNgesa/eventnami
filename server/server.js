@@ -33,6 +33,10 @@ app.use("/api/v1", ticketRoutes);
 app.use("/api/v1", memoryRoutes);
 app.use("/api/v1", genreRoutes);
 
+app.use((req, res) => {
+  res.send("API is running");
+});
+
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server running at this:${PORT}`);
