@@ -20,6 +20,10 @@ export function ImageViewer({
 }: ImageViewerProps) {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
+  const formattedImages = images.map((img) =>
+    img.startsWith("http") ? img : `http://localhost:5002${img}`
+  );
+
   useEffect(() => {
     setCurrentIndex(initialIndex);
   }, [initialIndex]);
@@ -80,7 +84,7 @@ export function ImageViewer({
 
           {/* Image */}
           <div className="relative w-full h-full flex items-center justify-center">
-            {images.length > 0 && images[currentIndex] ? (
+            {formattedImages.length > 0 && formattedImages[currentIndex] ? (
               <Image
                 src={images[currentIndex] || "/image.svg"}
                 alt={`Image ${currentIndex + 1}`}

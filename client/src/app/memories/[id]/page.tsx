@@ -35,13 +35,17 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
         const response = await axios.get(
           `http://localhost:5002/api/v1/memories/${id}`
         );
+        console.log("API Response:", response.data);
         // setMemory(response.data.data);
 
         const memoryData = response.data.data;
         setMemory({
           _id: memoryData._id,
           eventId: memoryData.eventId,
-          images: memoryData.image,
+          // images: memoryData.image,
+          images: memoryData.image.map(
+            (img: string) => `http://localhost:5002${img}`
+          ),
         });
       } catch (error) {
         console.error("Error fetching memory details:", error);
@@ -77,7 +81,8 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
               >
                 <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                   <Image
-                    src={`http://localhost:5002${image}`}
+                    // src={`http://localhost:5002${image}`}
+                    src={image}
                     alt={`${memory.eventId} memory ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
@@ -93,31 +98,15 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
       </div>
 
       <ImageViewer
-        images={memory.images || []}
+        images={memory.images}
+        // images={[
+        //   "http://localhost:5002/images/art2.jpg",
+        //   "http://localhost:5002/images/btb.jpg",
+        // ]}
         initialIndex={selectedImageIndex}
         isOpen={isViewerOpen}
         onClose={() => setSelectedImageIndex(-1)}
       />
     </>
   );
-}
-
-{
-  /* {memory.images.map((image, index) => (
-            <div
-              key={index}
-              className="relative break-inside-avoid group cursor-pointer"
-              onClick={() => setSelectedImageIndex(index)}
-            >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                <Image
-                  src={image}
-                  alt={`${memory.eventId} memory ${index + 1}`}
-                  fill
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-              </div>
-            </div>
-          ))} */
 }

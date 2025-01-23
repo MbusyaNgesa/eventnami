@@ -21,9 +21,7 @@ UpcomingEventsProps) {
   const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  //fetching from server
   useEffect(() => {
-    // if (!propEvents.length) {
     const fetchEvents = async () => {
       setIsLoading(true);
       try {
@@ -38,10 +36,6 @@ UpcomingEventsProps) {
       }
     };
     fetchEvents();
-    // } else {
-    //   setEvents(propEvents);
-    //   setIsLoading(propIsLoading);
-    // }
   }, []);
 
   useEffect(() => {
@@ -130,22 +124,3 @@ UpcomingEventsProps) {
     </div>
   );
 }
-
-// useEffect(() => {
-//   if (!propEvents.length) {
-//   }
-//   const fetchEvents = async () => {
-//     try {
-//       const response = await axios.get("http://localhost:5002/api/v1/event");
-//       console.log("Fetched Events:", response.data);
-//       // setEvents(response.data || []);
-//       setEvents(response.data.data || []); // Use response.data.data for the array
-//     } catch (error) {
-//       console.error("Error fetching events:", error);
-//       setEvents([]);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-//   fetchEvents();
-// }, []);
