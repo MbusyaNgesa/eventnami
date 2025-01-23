@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 
 interface Memory {
+  _id: string;
   eventId: string;
   image: string[];
 }
@@ -36,18 +37,18 @@ export default function MemoriesPage() {
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {memories.map((memory) => (
-            <Link href={`/memories/${memory.eventId}`} key={memory.eventId}>
+            <Link href={`/memories/${memory._id}`} key={memory._id}>
               <Card className="hover:shadow-lg transition-shadow">
                 <Image
                   src={`http://localhost:5002${memory.image[0]}`} // Use the first image
-                  alt={`Memory for event ${memory.eventId}`}
+                  alt={`Memory for event ${memory._id}`}
                   width={400}
                   height={300}
                   className="w-full h-48 object-cover rounded-t-lg"
                 />
                 <CardContent className="p-4">
                   <h3 className="text-lg font-semibold">
-                    Event ID: {memory.eventId}
+                    Event ID: {memory._id}
                   </h3>
                 </CardContent>
               </Card>
