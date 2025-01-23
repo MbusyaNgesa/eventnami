@@ -13,7 +13,7 @@ export default function Home() {
         </section>
         <section id="events" className="mb-12 mt-12">
           <h2 className="text-2xl font-bold mb-4">Upcoming Events</h2>
-          <UpcomingEvents isLoading={false} />
+          <UpcomingEvents />
         </section>
 
         <section className="mb-12">

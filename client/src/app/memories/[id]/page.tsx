@@ -20,6 +20,8 @@ interface Memory {
   images: string[];
 }
 
+const url = `http://localhost:5002`;
+
 export default function MemoryDetails({ params }: MemoryDetailsProps) {
   const { id } = use(params);
   // const memory = mockMemories.find((m) => m.id === id);
@@ -32,10 +34,7 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
   useEffect(() => {
     const fetchMemoryDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5002/api/v1/memories/${id}`
-        );
-        console.log("API Response:", response.data);
+        const response = await axios.get(`${url}/api/v1/memories/${id}`);
         // setMemory(response.data.data);
 
         const memoryData = response.data.data;
@@ -43,9 +42,7 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
           _id: memoryData._id,
           eventId: memoryData.eventId,
           // images: memoryData.image,
-          images: memoryData.image.map(
-            (img: string) => `http://localhost:5002${img}`
-          ),
+          images: memoryData.image.map((img: string) => `${url}${img}`),
         });
       } catch (error) {
         console.error("Error fetching memory details:", error);
@@ -99,10 +96,6 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
 
       <ImageViewer
         images={memory.images}
-        // images={[
-        //   "http://localhost:5002/images/art2.jpg",
-        //   "http://localhost:5002/images/btb.jpg",
-        // ]}
         initialIndex={selectedImageIndex}
         isOpen={isViewerOpen}
         onClose={() => setSelectedImageIndex(-1)}

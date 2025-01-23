@@ -145,7 +145,8 @@ export default function EventDetails() {
 
       <section>
         <h2 className="text-2xl font-bold mb-4">Events You May Like</h2>
-        <UpcomingEvents isLoading={false} />
+        {/* <UpcomingEvents isLoading={false} /> */}
+        <UpcomingEvents />
       </section>
     </div>
   );

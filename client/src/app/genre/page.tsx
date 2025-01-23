@@ -1,56 +1,60 @@
 // "use client";
 
-// import { useState, useEffect,Suspense } from "react";
+// import { useState, useEffect } from "react";
 // import { useSearchParams } from "next/navigation";
 // import { Button } from "@/components/ui/button";
 // import { Skeleton } from "@/components/ui/skeleton";
 // import axios from "axios";
 
-// // interface Genre {
-// //   genreName: string;
-// // }
+// export const dynamic = "force-dynamic";
+
+// interface Genre {
+//   genreName: string;
+// }
 
 // export default function GenrePage() {
 //   const [genres, setGenres] = useState<string[]>([]);
 //   const [events, setEvents] = useState<any[]>([]);
 //   const [isLoading, setIsLoading] = useState(true);
 
+//   const searchParams = useSearchParams();
+//   const selectedGenre = searchParams.get("selected") || "all";
+
 //   useEffect(() => {
-//     const fetchGenre = async () => {
+//     const fetchData = async () => {
 //       try {
-//         const response = await axios.get<{
-//           success: boolean;
-//           data: { genreName: string }[];
-//         }>(`http://localhost:5002/api/v1/genre/all`);
-//         setEvents(events);
-//         setGenres((response.data.data || []).map((genre) => genre.genreName));
+//         const [genreResponse, eventResponse] = await Promise.all([
+//           axios.get<{
+//             success: boolean;
+//             data: { genreName: string }[];
+//           }>("http://localhost:5002/api/v1/genre/all"),
+//           axios.get<{
+//             success: boolean;
+//             data: any[];
+//           }>("http://localhost:5002/api/v1/event"),
+//         ]);
+
+//         setGenres(
+//           (genreResponse.data.data || []).map((genre) => genre.genreName)
+//         );
+//         setEvents(eventResponse.data.data || []);
 //       } catch (error) {
-//         console.error("Error fetching genres:", error);
+//         console.error("Error fetching genres or events:", error);
 //       } finally {
 //         setIsLoading(false);
 //       }
 //     };
-//     fetchGenre();
+
+//     fetchData();
 //   }, []);
 
-//   const searchParams = useSearchParams();
-//   const initialGenre = searchParams.get("selected") || "all";
-//   const [selectedGenre, setSelectedGenre] = useState(
-//     initialGenre.toLowerCase()
-//   );
-
-//   useEffect(() => {
-//     const selected = searchParams.get("selected");
-//     if (selected) {
-//       setSelectedGenre(selected.toLowerCase());
-//     }
-//   }, [searchParams]);
-
 //   const filteredEvents =
-//     selectedGenre === "all"
+//     selectedGenre.toLowerCase() === "all"
 //       ? events
 //       : events.filter(
-//           (event) => event.genre && event.genre.toLowerCase() === selectedGenre
+//           (event) =>
+//             event.genre &&
+//             event.genre.toLowerCase() === selectedGenre.toLowerCase()
 //         );
 
 //   return (
@@ -65,8 +69,9 @@
 //             <Button
 //               key="all"
 //               variant={selectedGenre === "all" ? "default" : "outline"}
-//               onClick={() => setSelectedGenre("all")}
-//               // onClick={() => router.push("/genre")} // Use router.push
+//               onClick={() => {
+//                 window.location.href = "/genre?selected=all";
+//               }}
 //             >
 //               All
 //             </Button>
@@ -74,10 +79,13 @@
 //               <Button
 //                 key={index}
 //                 variant={
-//                   selectedGenre === genre.toLowerCase() ? "default" : "outline"
+//                   selectedGenre.toLowerCase() === genre.toLowerCase()
+//                     ? "default"
+//                     : "outline"
 //                 }
-//                 onClick={() => setSelectedGenre(genre.toLowerCase())}
-//                 // onClick={() => router.push(`/genre/${genre.toLowerCase()}`)} // Use router.push
+//                 onClick={() => {
+//                   window.location.href = `/genre?selected=${genre.toLowerCase()}`;
+//                 }}
 //               >
 //                 {genre}
 //               </Button>
@@ -112,19 +120,18 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import axios from "axios";
 
-export const dynamic = "force-dynamic";
+// interface Genre {
+//   genreName: string;
+// }
 
-interface Genre {
-  genreName: string;
-}
-
-export default function GenrePage() {
+function GenrePageContent() {
   const [genres, setGenres] = useState<string[]>([]);
   const [events, setEvents] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -212,7 +219,7 @@ export default function GenrePage() {
                     alt={event.name}
                     className="card-image"
                   />
-                  <div className="card-body">
+                  <div className="card-body p-5 bg-orange-400">
                     <h3 className="card-title">{event.name}</h3>
                     <p className="card-text">Genre: {event.genre}</p>
                     <p className="card-text">Location: {event.location}</p>
@@ -229,3 +236,13 @@ export default function GenrePage() {
     </div>
   );
 }
+
+export default function GenrePage() {
+  return (
+    <Suspense fallback={<Skeleton>Loading...</Skeleton>}>
+      <GenrePageContent />
+    </Suspense>
+  );
+}
+
+export const dynamic = "force-dynamic";
