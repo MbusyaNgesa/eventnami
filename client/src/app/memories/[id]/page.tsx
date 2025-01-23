@@ -25,7 +25,6 @@ const url = `http://localhost:5002`;
 export default function MemoryDetails({ params }: MemoryDetailsProps) {
   const { id } = use(params);
   // const memory = mockMemories.find((m) => m.id === id);
-  // const { id } = use(params as Promise<{ id: string }>);
 
   const [memory, setMemory] = useState<Memory | null>(null);
   const [isLoading, setIsLoading] = useState(true);

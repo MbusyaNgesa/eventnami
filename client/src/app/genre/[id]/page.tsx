@@ -19,6 +19,8 @@ interface GenrePageProps {
   }>;
 }
 
+const url = `http://localhost:5002`;
+
 export default function GenrePage({ params }: GenrePageProps) {
   const router = useRouter();
 
@@ -33,7 +35,7 @@ export default function GenrePage({ params }: GenrePageProps) {
         const genreResponse = await axios.get<{
           success: boolean;
           data: { genreName: string }[];
-        }>("http://localhost:5002/api/v1/genre/all");
+        }>(`${url}/api/v1/genre/all`);
 
         setGenres(
           (genreResponse.data.data || []).map((genre) => genre.genreName)
@@ -49,7 +51,7 @@ export default function GenrePage({ params }: GenrePageProps) {
             price: number;
             image: string;
           }[];
-        }>("http://localhost:5002/api/v1/event");
+        }>(`${url}/api/v1/event`);
 
         setEvents(eventResponse.data.data || []);
       } catch (error) {

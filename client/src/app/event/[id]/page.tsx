@@ -12,19 +12,17 @@ import { mockVendors } from "@/lib/mockData";
 import { TicketSelection, TicketType } from "@/types";
 import { useParams } from "next/navigation";
 import axios from "axios";
-// interface EventDetailsProps {
-//   params: Promise<{
-//     id: string;
-//   }>;
-// }
+
 interface Event {
   name: string;
   date: string;
   location: string;
   genre: string;
-  image?: string; // Add this if image is optional
-  price: number; // Add other properties as needed
+  image?: string;
+  price: number;
 }
+
+const url = `http://localhost:5002`;
 
 export default function EventDetails() {
   // const { id } = use(params);
@@ -39,11 +37,9 @@ export default function EventDetails() {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5002/api/v1/event/${id}`
-        );
+        const response = await axios.get(`${url}/api/v1/event/${id}`);
         console.log("Fetched event:", response.data);
-        setEvent(response.data.data); // Adjust based on your backend response structure
+        setEvent(response.data.data); // Adjust based on your backend response structure...Do not forget
       } catch (error) {
         console.error("Error fetching event:", error);
         setEvent(null);
@@ -90,9 +86,7 @@ export default function EventDetails() {
     <div className="container mx-auto px-4 py-8">
       <Card className="mb-8">
         <Image
-          src={
-            event.image ? `http://localhost:5002${event.image}` : "/summer2.jpg"
-          }
+          src={event.image ? `${url}${event.image}` : "/summer2.jpg"}
           alt={event.name || "No Event Pic"}
           width={800}
           height={400}
