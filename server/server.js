@@ -35,5 +35,5 @@ app.use("/api/v1", genreRoutes);
 
 app.listen(PORT, () => {
   connectDB();
-  console.log(`Server running at:${PORT}`);
+  console.log(`Server running at this:${PORT}`);
 });
