@@ -18,7 +18,7 @@ interface Event {
   genre: string;
 }
 
-const url = `https://eventnami.onrender.com`;
+const url = `https://eventnami.onrender.com/`;
 
 export default function UpcomingEvents() {
   const [events, setEvents] = useState<Event[]>([]);
