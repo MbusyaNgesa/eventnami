@@ -11,6 +11,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
+dotenv.config();
 interface Event {
   _id: string;
   name: string;

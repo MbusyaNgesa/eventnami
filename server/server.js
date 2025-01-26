@@ -27,8 +27,8 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 // app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 const allowedOrigins = [
-  "http://localhost:3000", // For local development
-  "https://eventlifyke.vercel.app/", // Replace with your actual Vercel frontend domain
+  "http://localhost:3000",
+  "https://eventlifyke.vercel.app/",
 ];
 
 app.use(
