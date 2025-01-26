@@ -25,7 +25,18 @@ const __dirname = path.dirname(__filename);
 
 app.use("/images", express.static(path.join(__dirname, "images")));
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+const allowedOrigins = [
+  "http://localhost:3000", // For local development
+  "https://eventlifyke.vercel.app/", // Replace with your actual Vercel frontend domain
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 
 app.use(express.json()); //allows us to accept JSON data in body(what user passes)
 app.use("/api/v1", eventRoutes);
