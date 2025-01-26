@@ -22,7 +22,7 @@ interface Event {
   price: number;
 }
 
-const url = `http://localhost:5002`;
+const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function EventDetails() {
   // const { id } = use(params);

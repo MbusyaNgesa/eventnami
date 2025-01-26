@@ -20,7 +20,6 @@ interface Event {
   genre: string;
 }
 
-dotenv.config();
 const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function UpcomingEvents() {
