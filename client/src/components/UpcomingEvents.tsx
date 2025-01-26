@@ -5,6 +5,8 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import dotenv from "dotenv";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,7 +20,8 @@ interface Event {
   genre: string;
 }
 
-const url = `https://eventnami.onrender.com`;
+dotenv.config();
+const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function UpcomingEvents() {
   const [events, setEvents] = useState<Event[]>([]);

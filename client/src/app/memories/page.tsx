@@ -11,7 +11,7 @@ interface Memory {
   image: string[];
 }
 
-const url = `http://localhost:5002`;
+const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function MemoriesPage() {
   const [memories, setMemories] = useState<Memory[]>([]);

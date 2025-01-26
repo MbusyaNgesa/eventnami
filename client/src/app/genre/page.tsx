@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 
-const url = `http://localhost:5002`;
+const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 function GenrePageContent() {
   const [genres, setGenres] = useState<string[]>([]);
