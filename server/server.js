@@ -15,16 +15,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5002;
 
-//Getting static images
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use("/images", express.static(path.join(__dirname, "images")));
-
-// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://eventlifyke.vercel.app/",
+  "https://eventlifyke.vercel.app",
 ];
 
 app.use(
@@ -33,6 +26,14 @@ app.use(
     credentials: true,
   })
 );
+
+//Getting static images
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use("/images", express.static(path.join(__dirname, "images")));
+
+// app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 app.use(express.json()); //allows us to accept JSON data in body(what user passes)
 app.use("/api/v1", eventRoutes);
