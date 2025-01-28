@@ -15,10 +15,6 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5002;
 
-// app.get("/", (req, res) => {
-//   res.send("Home route is up");
-// });
-
 //Getting static images
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,3 +48,7 @@ app.listen(PORT, () => {
   connectDB();
   console.log(`Server running at this:${PORT}`);
 });
+
+// app.get("/", (req, res) => {
+//   res.send("Home route is up");
+// });
