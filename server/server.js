@@ -9,6 +9,7 @@ import eventRoutes from "./routes/v1/eventRoutes.js";
 import ticketRoutes from "./routes/v1/ticketRoutes.js";
 import memoryRoutes from "./routes/v1/memoryRoutes.js";
 import genreRoutes from "./routes/v1/genreRoutes.js";
+import tokenRoute from "./routes/v1/tokenRoute.js";
 
 dotenv.config();
 
@@ -41,15 +42,19 @@ app.use("/api/v1", ticketRoutes);
 app.use("/api/v1", memoryRoutes);
 app.use("/api/v1", genreRoutes);
 
-app.use((req, res) => {
-  res.send("API is running");
-});
+// app.use((req, res) => {
+//   res.send("API is running");
+// });
 
 app.listen(PORT, () => {
   connectDB();
   console.log(`Server running at this:${PORT}`);
 });
 
+app.get("/", (req, res) => {
+  res.send("Mpesa API");
+});
+app.use("/api/v1", tokenRoute);
 // app.get("/", (req, res) => {
 //   res.send("Home route is up");
 // });
