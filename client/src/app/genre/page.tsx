@@ -6,6 +6,8 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
+import { Card, CardContent } from "@/components/ui/card";
 
 const url = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -91,19 +93,28 @@ function GenrePageContent() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {filteredEvents.length > 0 ? (
               filteredEvents.map((event) => (
-                <div key={event._id} className="card">
-                  <img
+                <Card className="hover:shadow-lg transition-shadow">
+                  <Image
                     src={event.image}
                     alt={event.name}
-                    className="card-image"
+                    width={400}
+                    height={300}
+                    className="w-full h-64 object-cover"
                   />
-                  <div className="card-body p-5 bg-orange-400">
-                    <h3 className="card-title">{event.name}</h3>
-                    <p className="card-text">Genre: {event.genre}</p>
-                    <p className="card-text">Location: {event.location}</p>
-                    <p className="card-text">Price: ${event.price}</p>
-                  </div>
-                </div>
+                  <CardContent>
+                    {/* <div className="card-body p-5 bg-orange-400"> */}
+                    <h3 className="text-lg font-semibold">{event.name}</h3>
+                    <p className="text-sm text-gray-700">
+                      Genre: {event.genre}
+                    </p>
+                    <p className="text-sm text-gray-700">
+                      Location: {event.location}
+                    </p>
+                    <p className="text-sm text-gray-700">
+                      Price: ${event.price}
+                    </p>
+                  </CardContent>
+                </Card>
               ))
             ) : (
               <div>No events found for this genre.</div>

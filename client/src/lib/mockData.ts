@@ -89,12 +89,12 @@ export const mockGenres: Genre[] = [
   {
     id: "1",
     name: "Afro",
-    image: "/images/afro.jpg",
+    image: "/images/btb2.jpg",
   },
   {
     id: "2",
     name: "Pop",
-    image: "/images/afro.jpg",
+    image: "/images/btb.jpg",
   },
   {
     id: "3",
