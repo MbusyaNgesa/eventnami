@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Event {
   _id: string;
@@ -102,31 +103,34 @@ export default function GenrePage({ params }: GenrePageProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {filteredEvents.length > 0 ? (
                 filteredEvents.map((event) => (
-                  <Card
-                    className="hover:shadow-lg transition-shadow"
-                    key={event._id}
-                  >
-                    <Image
-                      src={event.image}
-                      alt={event.name}
-                      width={400}
-                      height={300}
-                      className="w-full h-64 object-cover"
-                    />
-                    <CardContent>
-                      {/* <div className="card-body p-5 bg-orange-400"> */}
-                      <h3 className="text-lg font-semibold">{event.name}</h3>
-                      <p className="text-sm text-gray-700">
-                        Genre: {event.genre}
-                      </p>
-                      <p className="text-sm text-gray-700">
-                        Location: {event.location}
-                      </p>
-                      <p className="text-sm text-gray-700">
-                        Price: KES {event.price}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <div key={event._id}>
+                    <Link href={`/event/${event._id}`}>
+                      <Card className="hover:shadow-lg transition-shadow">
+                        <Image
+                          src={event.image}
+                          alt={event.name}
+                          width={400}
+                          height={300}
+                          className="w-full h-64 object-cover"
+                        />
+                        <CardContent>
+                          {/* <div className="card-body p-5 bg-orange-400"> */}
+                          <h3 className="text-lg font-semibold">
+                            {event.name}
+                          </h3>
+                          <p className="text-sm text-gray-700">
+                            Genre: {event.genre}
+                          </p>
+                          <p className="text-sm text-gray-700">
+                            Location: {event.location}
+                          </p>
+                          <p className="text-sm text-gray-700">
+                            Price: KES {event.price}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </div>
                 ))
               ) : (
                 <div>No events found for this genre.</div>

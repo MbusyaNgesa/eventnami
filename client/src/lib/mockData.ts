@@ -51,7 +51,7 @@ export const mockEvents: Event[] = [
 export const mockMemories: Memory[] = [
   {
     id: "1",
-    eventName: "January",
+    eventName: "Art Frenzy",
     images: [
       "/images/afro.jpg",
       "/placeholder.svg?height=200&width=300",
@@ -61,7 +61,7 @@ export const mockMemories: Memory[] = [
   },
   {
     id: "2",
-    eventName: "February",
+    eventName: "Summer Tides",
     images: [
       "/placeholder.svg?height=200&width=300",
       "/placeholder.svg?height=200&width=300",

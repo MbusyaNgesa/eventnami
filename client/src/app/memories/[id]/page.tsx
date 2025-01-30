@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 import { use, useEffect, useState } from "react";
 import { ImageViewer } from "@/components/ImageViewer";
 import axios from "axios";
-
 interface MemoryDetailsProps {
   params: Promise<{
     id: string;
@@ -16,7 +15,7 @@ interface MemoryDetailsProps {
 interface Memory {
   _id: string;
   eventId: string;
-  // eventName: string;
+  memoryName?: string;
   images: string[];
 }
 
@@ -40,7 +39,7 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
         setMemory({
           _id: memoryData._id,
           eventId: memoryData.eventId,
-          // images: memoryData.image,
+          memoryName: memoryData.memoryName,
           images: memoryData.image.map((img: string) => `${url}${img}`),
         });
       } catch (error) {
@@ -66,7 +65,7 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
   return (
     <>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">{memory.eventId}</h1>
+        <h1 className="text-3xl font-bold mb-8">{memory.memoryName}</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {memory?.images?.length > 0 ? (
             memory.images.map((image, index) => (
@@ -79,7 +78,7 @@ export default function MemoryDetails({ params }: MemoryDetailsProps) {
                   <Image
                     // src={`http://localhost:5002${image}`}
                     src={image}
-                    alt={`${memory.eventId} memory ${index + 1}`}
+                    alt={`Error Loading Image`}
                     fill
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
