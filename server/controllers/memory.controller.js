@@ -4,7 +4,7 @@ import { Memory } from "../models/memoryModel.js";
 import { Event } from "../models/eventModel.js";
 
 export const createMemory = async (req, res) => {
-  const { eventId, image } = req.body;
+  const { eventId, image, memoryName } = req.body;
 
   try {
     const event = await Event.findById(eventId);
@@ -15,6 +15,7 @@ export const createMemory = async (req, res) => {
     const memory = new Memory({
       eventId,
       image,
+      memoryName,
     });
     await memory.save();
 

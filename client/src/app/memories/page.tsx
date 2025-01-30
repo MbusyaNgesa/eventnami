@@ -9,6 +9,7 @@ interface Memory {
   _id: string;
   eventId: string;
   image: string[];
+  memoryName: string;
 }
 
 const url = process.env.NEXT_PUBLIC_BACKEND_URL;
@@ -43,15 +44,13 @@ export default function MemoriesPage() {
               <Card className="hover:shadow-lg transition-shadow">
                 <Image
                   src={`${url}${memory.image[0]}`} // Use the first image
-                  alt={`Memory for event ${memory._id}`}
+                  alt={`Memory for event ${memory.memoryName}`}
                   width={400}
                   height={300}
-                  className="w-full h-48 object-cover rounded-t-lg"
+                  className="w-full h-64 object-cover "
                 />
                 <CardContent className="p-4">
-                  <h3 className="text-lg font-semibold">
-                    Event ID: {memory._id}
-                  </h3>
+                  <h3 className="text-lg font-semibold">{memory.memoryName}</h3>
                 </CardContent>
               </Card>
             </Link>
