@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/sheet";
 
 import pfp1 from "../img/pfp1.jpeg";
-import pfp2 from "../img/pfp2.jpeg";
 import { usePathname, useRouter } from "next/navigation";
 
 interface NavItem {
@@ -61,40 +60,42 @@ export function Navbar() {
   };
 
   return (
-    <nav className="border-b bg-cyan-800 ">
+    <nav className="border-b bg-black ">
       <div className="flex h-16 items-center px-4">
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center space-x-2">
-            <Image
+            {/* <Image
               src={pfp2}
               alt="Eventlify Logo"
               width={32}
               height={32}
               className="rounded-lg"
-            />
-            <span className="text-xl font-semibold text-white ">Eventlify</span>
+            /> */}
+            <span className="text-2xl font-semibold text-white ml-5">
+              Eventlify
+            </span>
           </Link>
         </div>
 
         {/* Search bar - hidden on mobile */}
         <div className="hidden flex-1 items-center justify-center px-4 md:flex">
           <div className="relative w-full max-w-sm">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="hidden absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder="Search events..."
-              className="w-full pl-8 text-white"
+              className="hidden w-full pl-8 text-white"
               type="search"
             />
           </div>
         </div>
 
         <NavigationMenu className="hidden md:flex">
-          <NavigationMenuList className="bg-cyan-800 text-white">
+          <NavigationMenuList className="bg-black text-white">
             {navItems.map((item) => (
               <NavigationMenuItem key={item.title}>
                 <button
                   onClick={() => handleNavigation(item.href)}
-                  className={`${navigationMenuTriggerStyle()} !bg-cyan-800 !text-white hover:!bg-cyan-700 hover:!text-white data-[active]:!bg-cyan-700 data-[state=open]:!bg-cyan-700`}
+                  className={`${navigationMenuTriggerStyle()} !bg-black !text-white hover:!bg-slate-200 hover:!text-black data-[active]:!bg-black data-[state=open]:!bg-black`}
                 >
                   {item.title}
                 </button>

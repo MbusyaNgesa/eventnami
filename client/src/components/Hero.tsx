@@ -1,13 +1,13 @@
 import Image from "next/image";
-import icon1 from "../img/icon1.jpg";
-import icon2 from "../img/icon2.jpg";
+import icon3 from "../img/icon3.png";
+import icon4 from "../img/icon4.jpg";
 
 export const Hero = () => {
   return (
     <div className="relative w-full h-[500px] rounded-lg overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src={icon2}
+          src={icon3}
           alt="Background"
           fill
           style={{ objectFit: "cover" }}
@@ -19,7 +19,7 @@ export const Hero = () => {
           {/* Image Section */}
           <div className="mt-4 relative w-[400px] h-[300px] lg:w-[600px] lg:h-[450px] rounded-lg overflow-hidden lg:ml-10 mb-4 lg:mb-0">
             <Image
-              src={icon1}
+              src={icon4}
               alt="Featured"
               fill
               style={{ objectFit: "cover" }}
@@ -27,12 +27,14 @@ export const Hero = () => {
           </div>
           {/* Description Section */}
           <div className="text-center lg:text-left lg:ml-7">
-            <h1 className="text-3xl font-bold">About Us</h1>
-            <p className="mt-3">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem vitae
-              a dolores eius. Nihil, consequatur esse quis tempora deserunt
-              eveniet?
-            </p>
+            <h1 className="text-5xl font-bold mt-3">About Us</h1>
+            <div className="max-w-[500px] ">
+              <p className="mt-3 text-lg font-semibold">
+                Welcome to Eventlify - your gateway to unforgettable
+                experiences. We're a dynamic platform connecting event
+                organizers, attendees, and vendors in one seamless space.
+              </p>
+            </div>
           </div>
         </div>
       </div>

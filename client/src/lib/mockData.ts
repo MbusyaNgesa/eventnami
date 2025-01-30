@@ -52,36 +52,22 @@ export const mockMemories: Memory[] = [
   {
     id: "1",
     eventName: "Art Frenzy",
-    images: [
-      "/images/afro.jpg",
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-    ],
+    images: ["/images/memory1.png"],
   },
   {
     id: "2",
     eventName: "Summer Tides",
-    images: [
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-    ],
+    images: ["/images/memory9.png", "/images/memory7.png"],
   },
   {
     id: "3",
-    eventName: "March",
-    images: [
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-    ],
+    eventName: "Beneath The Baobabs",
+    images: ["/images/memory2.png", "/images/memory3.png"],
   },
   {
     id: "4",
-    eventName: "April",
-    images: [
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-    ],
+    eventName: "X NYE",
+    images: ["/images/memory4.png", "/images/memory5.png"],
   },
 ];
 
@@ -89,57 +75,71 @@ export const mockGenres: Genre[] = [
   {
     id: "1",
     name: "Afro",
-    image: "/images/btb2.jpg",
+    image: "/images/afro2.jpg",
   },
   {
     id: "2",
     name: "Pop",
-    image: "/images/btb.jpg",
+    image: "/images/pop1.jpg",
   },
   {
     id: "3",
     name: "Rock",
-    image: "/images/afro.jpg",
+    image: "/images/rock.jpg",
   },
   {
     id: "4",
     name: "Reggae",
-    image: "/images/afro.jpg",
+    image: "/images/reggae1.jpg",
   },
   {
     id: "5",
-    name: "Hip Hop",
-    image: "/images/afro.jpg",
+    name: "EDM",
+    image: "/images/house.jpg",
   },
 ];
 
 export const mockVendors: Vendor[] = [
   {
     id: "1",
+    name: "Akito Jewelery",
+    image: "/images/akito.png",
+    description: "Style with a smile",
+    services: ["Rings", "Necklace", "Bangles"],
+  },
+  {
+    id: "2",
     name: "Tasty Bites Catering",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/images/tasty2.jpg",
     description: "Premium catering services for all your event needs.",
     services: ["Food & Beverages", "Setup", "Staff"],
   },
   {
-    id: "2",
-    name: "Sound Masters",
-    image: "/placeholder.svg?height=200&width=300",
-    description: "Professional sound and lighting equipment.",
-    services: ["Sound System", "Lighting", "DJ Services"],
-  },
-  {
     id: "3",
-    name: "Decor Dreams",
-    image: "/placeholder.svg?height=200&width=300",
-    description: "Transform your venue with our elegant decorations.",
-    services: ["Event Styling", "Floral Arrangements", "Props"],
+    name: "Maria Paints",
+    image: "/images/maria.jpg",
+    description: "Skilled face and body painter",
+    services: ["Face Paint", "Body Paint", "MUA"],
   },
   {
     id: "4",
-    name: "Photo Perfect",
-    image: "/placeholder.svg?height=200&width=300",
+    name: "PhotoMoto",
+    image: "/images/photomoto.jpg",
     description: "Capture your memories with our professional photography.",
     services: ["Photography", "Videography", "Photo Booth"],
+  },
+  {
+    id: "5",
+    name: "Js Bar",
+    image: "/images/tasty.jpg",
+    description: "Finest cocktails and mocktails in the city.",
+    services: ["Cocktails", "Mocktails", "Shots"],
+  },
+  {
+    id: "6",
+    name: "Kukito",
+    image: "/images/kukito.jpg",
+    description: "Fresh grilled chicken on the go.",
+    services: ["Fried Chicken", "Barbeque", "Fries"],
   },
 ];
