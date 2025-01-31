@@ -34,6 +34,9 @@ export default function EventDetails() {
     []
   );
 
+  const [showModal, setShowModal] = useState(false);
+  const [phone, setPhone] = useState("");
+
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -52,7 +55,7 @@ export default function EventDetails() {
   }, [id]);
 
   useEffect(() => {
-    console.log("Event details:", event);
+    // console.log("Event details:", event);
   }, [event]);
 
   if (isLoading) {
@@ -77,6 +80,20 @@ export default function EventDetails() {
     (sum, selection) => sum + selection.quantity * selection.totalPrice,
     0
   );
+
+  // const payHandler = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault();
+  //   console.log("Sending phone number:", phone);
+
+  //   try {
+  //     const response = await axios.post(`${url}/api/v1/mpesa`, {
+  //       phone,
+  //     });
+  //     console.log("Payment successful:", response.data);
+  //   } catch (error) {
+  //     console.error("Payment failed:", error);
+  //   }
+  // };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -121,7 +138,11 @@ export default function EventDetails() {
               <span className="font-bold">Total Amount</span>
               <span className="font-bold">KES {totalAmount}</span>
             </div>
-            <Button className="w-full" size="lg">
+            <Button
+              className="w-full"
+              size="lg"
+              onClick={() => setShowModal(true)}
+            >
               Book Now
             </Button>
           </CardContent>
@@ -138,6 +159,29 @@ export default function EventDetails() {
         {/* <UpcomingEvents isLoading={false} /> */}
         <UpcomingEvents />
       </section>
+
+      {/* Modal for Booking Input */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-bold mb-4">Enter Your Details</h2>
+            <input
+              type="text"
+              className="w-full p-2 border rounded-lg mb-4"
+              placeholder="Enter your name"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+            <div className="flex justify-end space-x-2">
+              <Button onClick={() => setShowModal(false)}>Cancel</Button>
+              {/* <Button onClick={payHandler}>Confirm</Button> */}
+              <Button onClick={() => alert(`Booking confirmed for: ${phone}`)}>
+                Confirm
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
